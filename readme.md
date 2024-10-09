@@ -40,4 +40,4 @@ LinkedIn: [David Alexander Fonseca Perez](https://www.linkedin.com/in/david-fons
 
 ## Licencia
 
-Este proyecto está licenciado bajo los términos de la **Licencia MIT**.
+Este proyecto está licenciado bajo los términos de la **GPL-3.0 license**.
