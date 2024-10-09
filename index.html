@@ -1,0 +1,152 @@
+<!-- 
+██████╗░░█████╗░██╗░░░██╗██╗██████╗░  ░█████╗░██████╗░███████╗░█████╗░████████╗
+██╔══██╗██╔══██╗██║░░░██║██║██╔══██╗  ██╔══██╗██╔══██╗██╔════╝██╔══██╗╚══██╔══╝
+██║░░██║███████║╚██╗░██╔╝██║██║░░██║  ██║░░╚═╝██████╔╝█████╗░░███████║░░░██║░░░
+██║░░██║██╔══██║░╚████╔╝░██║██║░░██║  ██║░░██╗██╔══██╗██╔══╝░░██╔══██║░░░██║░░░
+██████╔╝██║░░██║░░╚██╔╝░░██║██████╔╝  ╚█████╔╝██║░░██║███████╗██║░░██║░░░██║░░░
+╚═════╝░╚═╝░░╚═╝░░░╚═╝░░░╚═╝╚═════╝░  ░╚════╝░╚═╝░░╚═╝╚══════╝╚═╝░░╚═╝░░░╚═╝░░░
+David Fonseca "DavidCreat" https://github.com/DavidCreat
+  Copyright © 2024 David Fonseca "DavidCreat"
+  Todos los derechos reservados.
+  El código estructural de esta página web está protegido por derechos de autor y no puede ser copiado, modificado o distribuido sin autorización.
+  https://github.com/DavidCreat
+-->
+
+<!DOCTYPE html>
+<html lang="es" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archivo Central - Subir y Gestionar Archivos</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Archivo Central</div>
+                <ul class="nav-links">
+                    <li><a href="#home">Inicio</a></li>
+                    <li><a href="#upload">Subir</a></li>
+                    <li><a href="#features">Características</a></li>
+                    <li><a href="#about">Acerca de</a></li>
+                    <li><a href="#contact">Contacto</a></li>
+                </ul>
+                <button id="theme-toggle" aria-label="Cambiar tema">
+                    <i class="fas fa-sun"></i>
+                    <i class="fas fa-moon"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <h1>Bienvenido a Archivo Central</h1>
+                <p>Tu solución integral para subir, gestionar y compartir archivos de forma segura.</p>
+                <a href="#upload" class="cta-button">Comenzar ahora</a>
+            </div>
+        </section>
+
+        <section id="upload" class="upload-section">
+            <div class="container">
+                <h2>Sube tus archivos</h2>
+                <div class="upload-area">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Arrastra y suelta tus archivos aquí o</p>
+                    <button class="upload-button">Seleccionar archivos</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features">
+            <div class="container">
+                <h2>Características principales</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-lock"></i>
+                        <h3>Seguridad avanzada</h3>
+                        <p>Tus archivos están protegidos con encriptación de grado militar.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-share-alt"></i>
+                        <h3>Compartir fácilmente</h3>
+                        <p>Comparte tus archivos con un simple enlace o invitación por correo.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-sync-alt"></i>
+                        <h3>Sincronización automática</h3>
+                        <p>Mantén tus archivos actualizados en todos tus dispositivos.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-history"></i>
+                        <h3>Control de versiones</h3>
+                        <p>Accede a versiones anteriores de tus archivos en cualquier momento.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <div class="container">
+                <h2>Acerca de nosotros</h2>
+                <p>Archivo Central nació con la misión de simplificar la gestión de archivos para individuos y empresas. Nuestro equipo de expertos en tecnología trabaja incansablemente para ofrecerte la mejor experiencia en almacenamiento y compartición
+                    de archivos.</p>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2>Contáctanos</h2>
+                <form>
+                    <input type="text" placeholder="Nombre" required>
+                    <input type="email" placeholder="Correo electrónico" required>
+                    <textarea placeholder="Mensaje" required></textarea>
+                    <button type="submit">Enviar mensaje</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Archivo Central. Todos los derechos reservados.</p>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+
+        themeToggle.addEventListener('click', () => {
+            htmlElement.classList.toggle('dark');
+        });
+    </script>
+</body>
+
+</html>
+
+<!-- 
+██████╗░░█████╗░██╗░░░██╗██╗██████╗░  ░█████╗░██████╗░███████╗░█████╗░████████╗
+██╔══██╗██╔══██╗██║░░░██║██║██╔══██╗  ██╔══██╗██╔══██╗██╔════╝██╔══██╗╚══██╔══╝
+██║░░██║███████║╚██╗░██╔╝██║██║░░██║  ██║░░╚═╝██████╔╝█████╗░░███████║░░░██║░░░
+██║░░██║██╔══██║░╚████╔╝░██║██║░░██║  ██║░░██╗██╔══██╗██╔══╝░░██╔══██║░░░██║░░░
+██████╔╝██║░░██║░░╚██╔╝░░██║██████╔╝  ╚█████╔╝██║░░██║███████╗██║░░██║░░░██║░░░
+╚═════╝░╚═╝░░╚═╝░░░╚═╝░░░╚═╝╚═════╝░  ░╚════╝░╚═╝░░╚═╝╚══════╝╚═╝░░╚═╝░░░╚═╝░░░
+David Fonseca "DavidCreat" https://github.com/DavidCreat
+  Copyright © 2024 David Fonseca "DavidCreat"
+  Todos los derechos reservados.
+  El código estructural de esta página web está protegido por derechos de autor y no puede ser copiado, modificado o distribuido sin autorización.
+  https://github.com/DavidCreat
+-->
