@@ -20,13 +20,22 @@ document.addEventListener('DOMContentLoaded', function() {
     const filePreviewModal = document.getElementById('file-preview-modal');
     const filePreviewContent = document.getElementById('file-preview-content');
     const closePreviewModal = document.getElementById('close-preview-modal');
-    const currentFolderElement = document.getElementById('current-folder');
+    const breadcrumb = document.getElementById('breadcrumb');
+    const uploadPopup = document.getElementById('upload-popup');
+    const progressBar = document.getElementById('progress-bar');
+    const popupIcon = document.getElementById('popup-icon');
+    const popupTitle = document.getElementById('popup-title');
+    const popupMessage = document.getElementById('popup-message');
+    const closePopupBtn = document.getElementById('close-popup');
+    const contextMenu = document.getElementById('context-menu');
+    const contextRename = document.getElementById('context-rename');
+    const contextDelete = document.getElementById('context-delete');
 
     let currentPath = [];
     let files = [
-        { type: 'folder', name: 'Documentos', color: 'bg-blue-500' },
-        { type: 'folder', name: 'Imágenes', color: 'bg-green-500' },
-        { type: 'folder', name: 'Vídeos', color: 'bg-red-500' },
+        { type: 'folder', name: 'Documentos', color: 'bg-blue-500', contents: [] },
+        { type: 'folder', name: 'Imágenes', color: 'bg-green-500', contents: [] },
+        { type: 'folder', name: 'Vídeos', color: 'bg-red-500', contents: [] },
         { type: 'file', name: 'informe.pdf', extension: 'pdf' },
         { type: 'file', name: 'foto.jpg', extension: 'jpg' },
         { type: 'file', name: 'presentacion.pptx', extension: 'pptx' },
@@ -34,9 +43,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function renderFiles() {
         fileGrid.innerHTML = '';
-        files.forEach((item, index) => {
+        let currentFolder = getCurrentFolder();
+        currentFolder.forEach((item, index) => {
             const element = document.createElement('div');
-            element.className = `${item.type}-item p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col items-center justify-center cursor-pointer`;
+            element.className = `${item.type}-item p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col items-center justify-center cursor-pointer relative`;
+            element.setAttribute('data-index', index);
 
             if (item.type === 'folder') {
                 element.innerHTML = `
@@ -56,51 +67,47 @@ document.addEventListener('DOMContentLoaded', function() {
                 element.addEventListener('click', () => previewFile(item));
             }
 
-            const actionsMenu = createActionsMenu(item, index);
-            element.appendChild(actionsMenu);
-
+            element.addEventListener('contextmenu', handleContextMenu);
             fileGrid.appendChild(element);
         });
     }
 
-    function createActionsMenu(item, index) {
-        const menu = document.createElement('div');
-        menu.className = 'absolute top-2 right-2 hidden group-hover:block';
-        menu.innerHTML = `
-            <button class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
-                <i class="fas fa-ellipsis-v"></i>
-            </button>
-        `;
+    function handleContextMenu(e) {
+        e.preventDefault();
+        const rect = e.target.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
 
-        const dropdown = document.createElement('div');
-        dropdown.className = 'absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white dark:bg-gray-700 ring-1 ring-black ring-opacity-5 hidden';
-        dropdown.innerHTML = `
-            <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                <a href="#" class="rename-item block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:bg-gray-600" role="menuitem">Renombrar</a>
-                <a href="#" class="delete-item block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:bg-gray-600" role="menuitem">Eliminar</a>
-            </div>
-        `;
+        contextMenu.style.display = 'block';
+        contextMenu.style.left = `${e.pageX}px`;
+        contextMenu.style.top = `${e.pageY}px`;
 
-        menu.appendChild(dropdown);
+        const index = e.target.closest('[data-index]').getAttribute('data-index');
+        contextMenu.setAttribute('data-target-index', index);
+    }
 
-        menu.querySelector('button').addEventListener('click', (e) => {
-            e.stopPropagation();
-            dropdown.classList.toggle('hidden');
-        });
+    document.addEventListener('click', () => {
+        contextMenu.style.display = 'none';
+    });
 
-        menu.querySelector('.rename-item').addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            renameItem(item, index);
-        });
+    contextRename.addEventListener('click', (e) => {
+        e.preventDefault();
+        const index = contextMenu.getAttribute('data-target-index');
+        renameItem(getCurrentFolder()[index], index);
+    });
 
-        menu.querySelector('.delete-item').addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            deleteItem(index);
-        });
+    contextDelete.addEventListener('click', (e) => {
+        e.preventDefault();
+        const index = contextMenu.getAttribute('data-target-index');
+        deleteItem(index);
+    });
 
-        return menu;
+    function getCurrentFolder() {
+        let currentFolder = files;
+        for (let folderName of currentPath) {
+            currentFolder = currentFolder.find(item => item.type === 'folder' && item.name === folderName).contents;
+        }
+        return currentFolder;
     }
 
     function getFileIcon(extension) {
@@ -127,49 +134,47 @@ document.addEventListener('DOMContentLoaded', function() {
     function openFolder(folderName) {
         currentPath.push(folderName);
         updateBreadcrumb();
-        // Aquí simularíamos la carga de archivos de la carpeta
-        // Por ahora, solo mostraremos una notificación
+        renderFiles();
         showNotification(`Abriendo carpeta: ${folderName}`, 'info');
     }
 
     function updateBreadcrumb() {
-        let breadcrumbHTML = `
-            <div class="flex items-center">
-                <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
-                </svg>
-                <a href="#" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white">Mis Archivos</a>
-            </div>
+        breadcrumb.innerHTML = `
+            <li class="inline-flex items-center">
+                <a href="#" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+                    <svg class="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
+                    </svg>
+                    Inicio
+                </a>
+            </li>
         `;
 
         currentPath.forEach((folder, index) => {
-            breadcrumbHTML += `
-                <div class="flex items-center">
-                    <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
-                    </svg>
-                    <a href="#" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white" data-index="${index}">${folder}</a>
-                </div>
+            breadcrumb.innerHTML += `
+                <li>
+                    <div class="flex items-center">
+                        <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                        </svg>
+                        <a href="#" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white" data-index="${index}">${folder}</a>
+                    </div>
+                </li>
             `;
         });
 
-        currentFolderElement.innerHTML = breadcrumbHTML;
-
-        // Add click event listeners to breadcrumb items
-        currentFolderElement.querySelectorAll('a').forEach(link => {
+        breadcrumb.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
                 const index = e.target.dataset.index;
                 if (index !== undefined) {
                     currentPath = currentPath.slice(0, parseInt(index) + 1);
                     updateBreadcrumb();
-                    // Here you would typically load the contents of the selected folder
-                    showNotification(`Navegando a: ${currentPath.join('/')}`, 'info');
+                    renderFiles();
                 } else {
                     currentPath = [];
                     updateBreadcrumb();
-                    // Here you would typically load the root folder contents
-                    showNotification('Navegando a la raíz', 'info');
+                    renderFiles();
                 }
             });
         });
@@ -222,8 +227,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (!folderName) {
                     Swal.showValidationMessage('Por favor, ingrese un nombre para la carpeta');
                 } else {
-                    // Aquí agregaríamos la lógica para crear la carpeta
-                    files.push({ type: 'folder', name: folderName, color: getRandomColor() });
+                    getCurrentFolder().push({ type: 'folder', name: folderName, color: getRandomColor(), contents: [] });
                     renderFiles();
                     showNotification(`Carpeta "${folderName}" creada con éxito`, 'success');
                 }
@@ -234,13 +238,44 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function handleFileUpload(event) {
         const uploadedFiles = event.target.files;
+        showUploadPopup();
+        let filesUploaded = 0;
+
         for (let i = 0; i < uploadedFiles.length; i++) {
             const file = uploadedFiles[i];
             const extension = file.name.split('.').pop();
-            files.push({ type: 'file', name: file.name, extension: extension });
+
+            setTimeout(() => {
+                getCurrentFolder().push({ type: 'file', name: file.name, extension: extension });
+                filesUploaded++;
+                updateUploadProgress(filesUploaded, uploadedFiles.length);
+
+                if (filesUploaded === uploadedFiles.length) {
+                    renderFiles();
+                    showNotification(`${uploadedFiles.length} archivo(s) subido(s) con éxito`, 'success');
+                    setTimeout(hideUploadPopup, 1000);
+                }
+            }, i * 1000); // Simulating upload time
         }
-        renderFiles();
-        showNotification(`${uploadedFiles.length} archivo(s) subido(s) con éxito`, 'success');
+    }
+
+    function showUploadPopup() {
+        uploadPopup.classList.remove('hidden');
+        progressBar.style.width = '0%';
+        popupIcon.className = 'fas fa-cloud-upload-alt text-indigo-600 text-xl';
+        popupTitle.textContent = 'Subiendo archivos';
+        popupMessage.textContent = 'Por favor, espere mientras se suben los archivos...';
+        closePopupBtn.classList.add('hidden');
+    }
+
+    function updateUploadProgress(current, total) {
+        const progress = (current / total) * 100;
+        progressBar.style.width = `${progress}%`;
+        popupMessage.textContent = `Subiendo archivo ${current} de ${total}`;
+    }
+
+    function hideUploadPopup() {
+        uploadPopup.classList.add('hidden');
     }
 
     function renameItem(item, index) {
@@ -258,7 +293,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (!newName) {
                     Swal.showValidationMessage('Por favor, ingrese un nuevo nombre');
                 } else {
-                    files[index].name = newName;
+                    getCurrentFolder()[index].name = newName;
                     renderFiles();
                     showNotification(`${item.type === 'folder' ? 'Carpeta' : 'Archivo'} renombrado a "${newName}"`, 'success');
                 }
@@ -278,7 +313,7 @@ document.addEventListener('DOMContentLoaded', function() {
             confirmButtonText: 'Sí, eliminar'
         }).then((result) => {
             if (result.isConfirmed) {
-                const deletedItem = files.splice(index, 1)[0];
+                const deletedItem = getCurrentFolder().splice(index, 1)[0];
                 renderFiles();
                 showNotification(`${deletedItem.type === 'folder' ? 'Carpeta' : 'Archivo'} "${deletedItem.name}" eliminado`, 'success');
             }
@@ -307,6 +342,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     renderFiles();
+    updateBreadcrumb();
 });
 
 /*

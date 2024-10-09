@@ -11,6 +11,7 @@ David Fonseca "DavidCreat" https://github.com/DavidCreat
   Este script está protegido por derechos de autor y no puede ser copiado, modificado ni distribuido sin permiso del autor.
   https://github.com/DavidCreat
 */
+
 document.addEventListener('DOMContentLoaded', function() {
     const fileUpload = document.getElementById('file-upload');
     const dropZone = document.getElementById('drop-zone');
