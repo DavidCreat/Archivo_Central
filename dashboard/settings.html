@@ -1,0 +1,258 @@
+<!-- 
+██████╗░░█████╗░██╗░░░██╗██╗██████╗░  ░█████╗░██████╗░███████╗░█████╗░████████╗
+██╔══██╗██╔══██╗██║░░░██║██║██╔══██╗  ██╔══██╗██╔══██╗██╔════╝██╔══██╗╚══██╔══╝
+██║░░██║███████║╚██╗░██╔╝██║██║░░██║  ██║░░╚═╝██████╔╝█████╗░░███████║░░░██║░░░
+██║░░██║██╔══██║░╚████╔╝░██║██║░░██║  ██║░░██╗██╔══██╗██╔══╝░░██╔══██║░░░██║░░░
+██████╔╝██║░░██║░░╚██╔╝░░██║██████╔╝  ╚█████╔╝██║░░██║███████╗██║░░██║░░░██║░░░
+╚═════╝░╚═╝░░╚═╝░░░╚═╝░░░╚═╝╚═════╝░  ░╚════╝░╚═╝░░╚═╝╚══════╝╚═╝░░╚═╝░░░╚═╝░░░
+David Fonseca "DavidCreat" https://github.com/DavidCreat
+  Copyright © 2024 David Fonseca "DavidCreat"
+  Todos los derechos reservados.
+  El código estructural de esta página web está protegido por derechos de autor y no puede ser copiado, modificado o distribuido sin autorización.
+  https://github.com/DavidCreat
+-->
+
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <link rel="shortcut icon" href="resources/AC.ico" />
+
+    <title>Configuración - Archivo Central</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@5/dark.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="settings-styles.css">
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <aside class="hidden md:flex md:flex-shrink-0">
+            <div class="flex flex-col w-64">
+                <div class="flex flex-col h-0 flex-1 bg-gray-800 dark:bg-gray-800">
+                    <div class="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
+                        <div class="flex items-center flex-shrink-0 px-4">
+                            <h1 class="font-horizon text-2xl font-bold text-white">Archivo Central</h1>
+                        </div>
+                        <nav class="mt-5 flex-1 px-2 space-y-1">
+                            <a href="dashboard.html" class="group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-300 hover:bg-gray-700 hover:text-white">
+                                <i class="fas fa-home mr-3 h-6 w-6"></i> Dashboard
+                            </a>
+                            <a href="my-files.html" class="group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-300 hover:bg-gray-700 hover:text-white">
+                                <i class="fas fa-folder mr-3 h-6 w-6"></i> Mis Archivos
+                            </a>
+                            <a href="shared-files.html" class="group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-300 hover:bg-gray-700 hover:text-white">
+                                <i class="fas fa-share-alt mr-3 h-6 w-6"></i> Compartidos
+                            </a>
+                            <a href="trash.html" class="group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-300 hover:bg-gray-700 hover:text-white">
+                                <i class="fas fa-trash mr-3 h-6 w-6"></i> Papelera
+                            </a>
+                            <a href="settings.html" class="group flex items-center px-2 py-2 text-sm font-medium rounded-md bg-gray-900 text-white">
+                                <i class="fas fa-cog mr-3 h-6 w-6"></i> Configuración
+                            </a>
+                        </nav>
+                    </div>
+                    <div class="flex-shrink-0 flex bg-gray-700 p-4">
+                        <a href="#" class="flex-shrink-0 w-full group block">
+                            <div class="flex items-center">
+                                <div>
+                                    <img id="sidebar-avatar" class="inline-block h-9 w-9 rounded-full" src="https://avatars.githubusercontent.com/u/80436092?v=4" alt="Foto de perfil">
+                                </div>
+                                <div class="ml-3">
+                                    <p id="sidebar-name" class="text-sm font-medium text-white">David Fonseca</p>
+                                    <p class="text-xs font-medium text-gray-300 group-hover:text-gray-200">Ver perfil</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main content -->
+        <div class="flex flex-col w-0 flex-1 overflow-hidden">
+            <main class="flex-1 relative z-0 overflow-y-auto focus:outline-none">
+                <div class="py-6">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+                        <h1 class="text-2xl font-semibold text-gray-900 dark:text-gray-100">Configuración</h1>
+                    </div>
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+                        <div class="py-4">
+                            <!-- Tabs -->
+<!-- Tabs -->
+<div class="mb-4 border-b border-gray-200 dark:border-gray-700">
+    <ul class="flex flex-wrap -mb-px" id="settingsTabs" role="tablist">
+        <li class="mr-2" role="presentation">
+            <button class="inline-block p-4 border-b-2 rounded-t-lg" id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="true">Perfil</button>
+        </li>
+        <li class="mr-2" role="presentation">
+            <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="security-tab" data-tabs-target="#security" type="button" role="tab" aria-controls="security" aria-selected="false">Seguridad</button>
+        </li>
+        <li class="mr-2" role="presentation">
+            <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="notifications-tab" data-tabs-target="#notifications" type="button" role="tab" aria-controls="notifications" aria-selected="false">Notificaciones</button>
+        </li>
+        <li role="presentation">
+            <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="appearance-tab" data-tabs-target="#appearance" type="button" role="tab" aria-controls="appearance" aria-selected="false">Apariencia</button>
+        </li>
+    </ul>
+</div>
+                            <!-- Tab content -->
+                            <div id="settingsTabContent">
+                                <div class="p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                    <h2 class="text-lg font-semibold mb-4">Información del perfil</h2>
+                                    <form id="profile-form" class="space-y-4">
+                                        <div class="flex items-center space-x-4">
+                                            <div class="relative">
+                                                <img id="profile-image" class="w-24 h-24 rounded-full object-cover" src="https://avatars.githubusercontent.com/u/80436092?v=4" alt="Foto de perfil">
+                                                <label for="avatar-upload" class="absolute bottom-0 right-0 bg-blue-500 text-white rounded-full p-2 cursor-pointer">
+                                                    <i class="fas fa-camera"></i>
+                                                    <input type="file" id="avatar-upload" class="hidden" accept="image/*">
+                                                </label>
+                                            </div>
+                                            <div>
+                                                <h3 id="profile-name" class="text-xl font-semibold">David Fonseca</h3>
+                                                <p id="profile-email" class="text-gray-600 dark:text-gray-400">david@example.com</p>
+                                            </div>
+                                        </div>
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                            <div>
+                                                <label for="fullName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre completo</label>
+                                                <input type="text" id="fullName" name="fullName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" required>
+                                            </div>
+                                            <div>
+                                                <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Correo electrónico</label>
+                                                <input type="email" id="email" name="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" required>
+                                            </div>
+                                            <div>
+                                                <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Teléfono</label>
+                                                <input type="tel" id="phone" name="phone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                                            </div>
+                                            <div>
+                                                <label for="country" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">País</label>
+                                                <select id="country" name="country" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                                                    <option value="">Selecciona un país</option>
+                                                    <option value="ES">España</option>
+                                                    <option value="MX">México</option>
+                                                    <option value="AR">Argentina</option>
+                                                    <option value="CO">Colombia</option>
+                                                    <option value="CL">Chile</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label for="bio" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Biografía</label>
+                                            <textarea id="bio" name="bio" rows="4" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"></textarea>
+                                        </div>
+                                        <div>
+                                            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Guardar cambios</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="security" role="tabpanel" aria-labelledby="security-tab">
+                                    <h2 class="text-lg font-semibold mb-4">Seguridad de la cuenta</h2>
+                                    <form id="security-form" class="space-y-4">
+                                        <div>
+                                            <label for="current-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contraseña actual</label>
+                                            <input type="password" id="current-password" name="current-password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" required>
+                                        </div>
+                                        <div>
+                                            <label for="new-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nueva contraseña</label>
+                                            <input type="password" id="new-password" name="new-password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" required>
+                                        </div>
+                                        <div>
+                                            <label for="confirm-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirmar nueva contraseña</label>
+                                            <input type="password" id="confirm-password" name="confirm-password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" required>
+                                        </div>
+                                        <div>
+                                            <label class="relative inline-flex items-center cursor-pointer">
+                                                <input type="checkbox" id="two-factor" name="two-factor" class="sr-only peer">
+                                                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                                                <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Activar autenticación de dos factores</span>
+                                            </label>
+                                        </div>
+                                        <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Actualizar configuración de seguridad</button>
+                                    </form>
+                                </div>
+                                <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="notifications" role="tabpanel" aria-labelledby="notifications-tab">
+                                    <h2 class="text-lg font-semibold mb-4">Preferencias de notificaciones</h2>
+                                    <form id="notifications-form" class="space-y-4">
+                                        <div>
+                                            <label class="relative inline-flex items-center cursor-pointer">
+                                                <input type="checkbox" id="email-notifications" name="email-notifications" class="sr-only peer">
+                                                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                                                <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Recibir notificaciones por correo electrónico</span>
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <label class="relative inline-flex items-center cursor-pointer">
+                                                <input type="checkbox" id="push-notifications" name="push-notifications" class="sr-only peer">
+                                                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                                                <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Recibir notificaciones push</span>
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <label for="notification-frequency" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Frecuencia de notificaciones</label>
+                                            <select id="notification-frequency" name="notification-frequency" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                                                <option value="immediately">Inmediatamente</option>
+                                                <option value="daily">Diariamente</option>
+                                                <option value="weekly">Semanalmente</option>
+                                            </select>
+                                        </div>
+                                        <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Guardar preferencias de notificaciones</button>
+                                    </form>
+                                </div>
+                                <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="appearance" role="tabpanel" aria-labelledby="appearance-tab">
+                                    <h2 class="text-lg font-semibold mb-4">Configuración de apariencia</h2>
+                                    <form id="appearance-form" class="space-y-4">
+                                        <div>
+                                            <label for="theme" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tema</label>
+                                            <select id="theme" name="theme" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                                                <option value="light">Claro</option>
+                                                <option value="dark">Oscuro</option>
+                                                <option value="system">Usar configuración del sistema</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label for="font-size" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tamaño de fuente</label>
+                                            <select id="font-size" name="font-size" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                                                <option value="small">Pequeño</option>
+                                                <option value="medium">Mediano</option>
+                                                <option value="large">Grande</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label class="relative inline-flex items-center cursor-pointer">
+                                                <input type="checkbox" id="animations" name="animations" class="sr-only peer">
+                                                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                                                <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Activar animaciones</span>
+                                            </label>
+                                        </div>
+                                        <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Guardar configuración de apariencia</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="settings-script.js"></script>
+</body>
+</html>
+
+<!-- 
+██████╗░░█████╗░██╗░░░██╗██╗██████╗░  ░█████╗░██████╗░███████╗░█████╗░████████╗
+██╔══██╗██╔══██╗██║░░░██║██║██╔══██╗  ██╔══██╗██╔══██╗██╔════╝██╔══██╗╚══██╔══╝
+██║░░██║███████║╚██╗░██╔╝██║██║░░██║  ██║░░╚═╝██████╔╝█████╗░░███████║░░░██║░░░
+██║░░██║██╔══██║░╚████╔╝░██║██║░░██║  ██║░░██╗██╔══██╗██╔══╝░░██╔══██║░░░██║░░░
+██████╔╝██║░░██║░░╚██╔╝░░██║██████╔╝  ╚█████╔╝██║░░██║███████╗██║░░██║░░░██║░░░
+╚═════╝░╚═╝░░╚═╝░░░╚═╝░░░╚═╝╚═════╝░  ░╚════╝░╚═╝░░╚═╝╚══════╝╚═╝░░╚═╝░░░╚═╝░░░
+David Fonseca "DavidCreat" https://github.com/DavidCreat
+  Copyright © 2024 David Fonseca "DavidCreat"
+  Todos los derechos reservados.
+  El código estructural de esta página web está protegido por derechos de autor y no puede ser copiado, modificado o distribuido sin autorización.
+  https://github.com/DavidCreat
+-->

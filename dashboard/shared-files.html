@@ -1,0 +1,151 @@
+<!-- 
+██████╗░░█████╗░██╗░░░██╗██╗██████╗░  ░█████╗░██████╗░███████╗░█████╗░████████╗
+██╔══██╗██╔══██╗██║░░░██║██║██╔══██╗  ██╔══██╗██╔══██╗██╔════╝██╔══██╗╚══██╔══╝
+██║░░██║███████║╚██╗░██╔╝██║██║░░██║  ██║░░╚═╝██████╔╝█████╗░░███████║░░░██║░░░
+██║░░██║██╔══██║░╚████╔╝░██║██║░░██║  ██║░░██╗██╔══██╗██╔══╝░░██╔══██║░░░██║░░░
+██████╔╝██║░░██║░░╚██╔╝░░██║██████╔╝  ╚█████╔╝██║░░██║███████╗██║░░██║░░░██║░░░
+╚═════╝░╚═╝░░╚═╝░░░╚═╝░░░╚═╝╚═════╝░  ░╚════╝░╚═╝░░╚═╝╚══════╝╚═╝░░╚═╝░░░╚═╝░░░
+David Fonseca "DavidCreat" https://github.com/DavidCreat
+  Copyright © 2024 David Fonseca "DavidCreat"
+  Todos los derechos reservados.
+  El código estructural de esta página web está protegido por derechos de autor y no puede ser copiado, modificado o distribuido sin autorización.
+  https://github.com/DavidCreat
+-->
+
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <link rel="shortcut icon" href="resources/AC.ico" />
+
+    <title>Archivos Compartidos - Archivo Central</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@5/dark.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="shared-files-styles.css">
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+    <div class="flex h-screen overflow-hidden">
+<!-- Sidebar -->
+<aside class="hidden md:flex md:flex-shrink-0">
+    <div class="flex flex-col w-64">
+        <div class="flex flex-col h-0 flex-1 bg-gray-800 dark:bg-gray-800">
+            <div class="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
+                <div class="flex items-center flex-shrink-0 px-4">
+                    <h1 class="font-horizon text-2xl font-bold text-white">Archivo Central</h1>
+                </div>
+                <nav class="mt-5 flex-1 px-2 space-y-1">
+                    <a href="dashboard.html" class="group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-300 text-white">
+                        <i class="fas fa-home mr-3 h-6 w-6"></i> Dashboard
+                    </a>
+                    <a href="my-files-styles.html" class="group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-300 hover:bg-gray-700 hover:text-white">
+                        <i class="fas fa-folder mr-3 h-6 w-6"></i> Mis Archivos
+                    </a>
+                    <a href="shared-files.html" class="group flex items-center px-2 py-2 text-sm font-medium rounded-md bg-gray-900 hover:bg-gray-700 hover:text-white">
+                        <i class="fas fa-share-alt mr-3 h-6 w-6"></i> Compartidos
+                    </a>
+                    <a href="trash.html" class="group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-300 hover:bg-gray-700 hover:text-white">
+                        <i class="fas fa-trash mr-3 h-6 w-6"></i> Papelera
+                    </a>
+                    <a href="settings.html" class="group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-300 hover:bg-gray-700 hover:text-white">
+                        <i class="fas fa-cog mr-3 h-6 w-6"></i> Configuración
+                    </a>
+                </nav>
+            </div>
+            <div class="flex-shrink-0 flex bg-gray-700 p-4">
+                <a href="#" class="flex-shrink-0 w-full group block">
+                    <div class="flex items-center">
+                        <div>
+                            <img class="inline-block h-9 w-9 rounded-full" src="https://avatars.githubusercontent.com/u/80436092?v=4" alt="">
+                        </div>
+                        <div class="ml-3">
+                            <p class="text-sm font-medium text-white">David Fonseca</p>
+                            <p class="text-xs font-medium text-gray-300 group-hover:text-gray-200">Ver perfil</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</aside>
+
+        <!-- Main content -->
+        <div class="flex flex-col w-0 flex-1 overflow-hidden">
+            <main class="flex-1 relative z-0 overflow-y-auto focus:outline-none">
+                <div class="py-6">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+                        <h1 class="text-2xl font-semibold text-gray-900 dark:text-gray-100">Archivos Compartidos</h1>
+                    </div>
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+                        <div class="py-4">
+                            <!-- Breadcrumb -->
+                            <nav class="flex mb-5 overflow-x-auto" aria-label="Breadcrumb">
+                                <ol id="breadcrumb" class="inline-flex items-center space-x-1 md:space-x-3 whitespace-nowrap">
+                                    <li class="inline-flex items-center">
+                                        <a href="#" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+                                            <svg class="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                                <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
+                                            </svg>
+                                            Inicio
+                                        </a>
+                                    </li>
+                                </ol>
+                            </nav>
+
+                            <!-- File and folder grid -->
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                <!-- Left column: File/Folder list -->
+                                <div class="col-span-1 bg-white dark:bg-gray-800 rounded-lg shadow-md p-4">
+                                    <h2 class="text-lg font-semibold mb-4">Archivos y Carpetas</h2>
+                                    <div id="file-list" class="space-y-2">
+                                        <!-- Files and folders will be dynamically added here -->
+                                    </div>
+                                </div>
+
+                                <!-- Middle column: File preview -->
+                                <div class="col-span-1 md:col-span-2 bg-white dark:bg-gray-800 rounded-lg shadow-md p-4">
+                                    <h2 class="text-lg font-semibold mb-4">Vista Previa</h2>
+                                    <div id="file-preview" class="w-full h-64 md:h-96 bg-gray-200 dark:bg-gray-700 rounded-lg flex items-center justify-center">
+                                        <p class="text-gray-500 dark:text-gray-400">Selecciona un archivo para ver la vista previa</p>
+                                    </div>
+                                    <div id="share-section" class="mt-4 hidden">
+                                        <button id="share-button" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300">
+                                            Compartir Archivo
+                                        </button>
+                                        <div id="share-link-section" class="mt-4 hidden">
+                                            <div class="flex items-center">
+                                                <input type="text" id="share-link" class="flex-grow p-2 border rounded-l-md dark:bg-gray-700 dark:border-gray-600" readonly>
+                                                <button id="copy-link" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-r-md transition duration-300">
+                                                    Copiar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="shared-files-script.js"></script>
+</body>
+</html>
+
+<!-- 
+██████╗░░█████╗░██╗░░░██╗██╗██████╗░  ░█████╗░██████╗░███████╗░█████╗░████████╗
+██╔══██╗██╔══██╗██║░░░██║██║██╔══██╗  ██╔══██╗██╔══██╗██╔════╝██╔══██╗╚══██╔══╝
+██║░░██║███████║╚██╗░██╔╝██║██║░░██║  ██║░░╚═╝██████╔╝█████╗░░███████║░░░██║░░░
+██║░░██║██╔══██║░╚████╔╝░██║██║░░██║  ██║░░██╗██╔══██╗██╔══╝░░██╔══██║░░░██║░░░
+██████╔╝██║░░██║░░╚██╔╝░░██║██████╔╝  ╚█████╔╝██║░░██║███████╗██║░░██║░░░██║░░░
+╚═════╝░╚═╝░░╚═╝░░░╚═╝░░░╚═╝╚═════╝░  ░╚════╝░╚═╝░░╚═╝╚══════╝╚═╝░░╚═╝░░░╚═╝░░░
+David Fonseca "DavidCreat" https://github.com/DavidCreat
+  Copyright © 2024 David Fonseca "DavidCreat"
+  Todos los derechos reservados.
+  El código estructural de esta página web está protegido por derechos de autor y no puede ser copiado, modificado o distribuido sin autorización.
+  https://github.com/DavidCreat
+-->
