@@ -1,0 +1,159 @@
+<!-- 
+██████╗░░█████╗░██╗░░░██╗██╗██████╗░  ░█████╗░██████╗░███████╗░█████╗░████████╗
+██╔══██╗██╔══██╗██║░░░██║██║██╔══██╗  ██╔══██╗██╔══██╗██╔════╝██╔══██╗╚══██╔══╝
+██║░░██║███████║╚██╗░██╔╝██║██║░░██║  ██║░░╚═╝██████╔╝█████╗░░███████║░░░██║░░░
+██║░░██║██╔══██║░╚████╔╝░██║██║░░██║  ██║░░██╗██╔══██╗██╔══╝░░██╔══██║░░░██║░░░
+██████╔╝██║░░██║░░╚██╔╝░░██║██████╔╝  ╚█████╔╝██║░░██║███████╗██║░░██║░░░██║░░░
+╚═════╝░╚═╝░░╚═╝░░░╚═╝░░░╚═╝╚═════╝░  ░╚════╝░╚═╝░░╚═╝╚══════╝╚═╝░░╚═╝░░░╚═╝░░░
+David Fonseca "DavidCreat" https://github.com/DavidCreat
+  Copyright © 2024 David Fonseca "DavidCreat"
+  Todos los derechos reservados.
+  El código estructural de esta página web está protegido por derechos de autor y no puede ser copiado, modificado o distribuido sin autorización.
+  https://github.com/DavidCreat
+-->
+
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <link rel="shortcut icon" href="resources/AC.ico" />
+
+    <title>Papelera - Archivo Central</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@5/dark.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="trash.css">
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <aside class="hidden md:flex md:flex-shrink-0">
+            <div class="flex flex-col w-64">
+                <div class="flex flex-col h-0 flex-1 bg-gray-800 dark:bg-gray-800">
+                    <div class="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
+                        <div class="flex items-center flex-shrink-0 px-4">
+                            <h1 class="font-horizon text-2xl font-bold text-white">Archivo Central</h1>
+                        </div>
+                        <nav class="mt-5 flex-1 px-2 space-y-1">
+                            <a href="dashboard.html" class="group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-300 hover:bg-gray-700 hover:text-white">
+                                <i class="fas fa-home mr-3 h-6 w-6"></i> Dashboard
+                            </a>
+                            <a href="my-files.html" class="group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-300 hover:bg-gray-700 hover:text-white">
+                                <i class="fas fa-folder mr-3 h-6 w-6"></i> Mis Archivos
+                            </a>
+                            <a href="shared-files.html" class="group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-300 hover:bg-gray-700 hover:text-white">
+                                <i class="fas fa-share-alt mr-3 h-6 w-6"></i> Compartidos
+                            </a>
+                            <a href="trash.html" class="group flex items-center px-2 py-2 text-sm font-medium rounded-md bg-gray-900 text-white">
+                                <i class="fas fa-trash mr-3 h-6 w-6"></i> Papelera
+                            </a>
+                            <a href="settings.html" class="group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-300 hover:bg-gray-700 hover:text-white">
+                                <i class="fas fa-cog mr-3 h-6 w-6"></i> Configuración
+                            </a>
+                        </nav>
+                    </div>
+                    <div class="flex-shrink-0 flex bg-gray-700 p-4">
+                        <a href="#" class="flex-shrink-0 w-full group block">
+                            <div class="flex items-center">
+                                <div>
+                                    <img class="inline-block h-9 w-9 rounded-full" src="https://avatars.githubusercontent.com/u/80436092?v=4" alt="">
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-sm font-medium text-white">David Fonseca</p>
+                                    <p class="text-xs font-medium text-gray-300 group-hover:text-gray-200">Ver perfil</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main content -->
+        <div class="flex flex-col w-0 flex-1 overflow-hidden">
+            <main class="flex-1 relative z-0 overflow-y-auto focus:outline-none">
+                <div class="py-6">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+                        <h1 class="text-2xl font-semibold text-gray-900 dark:text-gray-100">Papelera</h1>
+                    </div>
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+                        <div class="py-4">
+                            <!-- Search and action buttons -->
+                            <div class="flex justify-between items-center mb-4">
+                                <div class="w-1/3">
+                                    <input type="text" id="search-input" placeholder="Buscar en la papelera..." class="w-full px-3 py-2 placeholder-gray-500 text-gray-900 rounded-md border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:border-gray-600">
+                                </div>
+                                <div class="space-x-2">
+                                    <button id="restore-btn" class="px-4 py-2 font-medium text-white bg-green-600 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">Restaurar seleccionados</button>
+                                    <button id="delete-btn" class="px-4 py-2 font-medium text-white bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">Eliminar permanentemente</button>
+                                </div>
+                            </div>
+
+                            <!-- Trash items table -->
+                            <div class="bg-white dark:bg-gray-800 shadow overflow-hidden sm:rounded-lg">
+                                <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                                    <thead class="bg-gray-50 dark:bg-gray-700">
+                                        <tr>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                                <input type="checkbox" id="select-all" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
+                                            </th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                                Nombre
+                                            </th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                                Tipo
+                                            </th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                                Fecha de eliminación
+                                            </th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                                Tamaño
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="trash-items" class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+                                        <!-- Trash items will be dynamically added here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="trash.js"></script>
+</body>
+</html>
+
+<!-- 
+██████╗░░█████╗░██╗░░░██╗██╗██████╗░  ░█████╗░██████╗░███████╗░█████╗░████████╗
+██╔══██╗██╔══██╗██║░░░██║██║██╔══██╗  ██╔══██╗██╔══██╗██╔════╝██╔══██╗╚══██╔══╝
+██║░░██║███████║╚██╗░██╔╝██║██║░░██║  ██║░░╚═╝██████╔╝█████╗░░███████║░░░██║░░░
+██║░░██║██╔══██║░╚████╔╝░██║██║░░██║  ██║░░██╗██╔══██╗██╔══╝░░██╔══██║░░░██║░░░
+██████╔╝██║░░██║░░╚██╔╝░░██║██████╔╝  ╚█████╔╝██║░░██║███████╗██║░░██║░░░██║░░░
+╚═════╝░╚═╝░░╚═╝░░░╚═╝░░░╚═╝╚═════╝░  ░╚════╝░╚═╝░░╚═╝╚══════╝╚═╝░░╚═╝░░░╚═╝░░░
+David Fonseca "DavidCreat" https://github.com/DavidCreat
+  Copyright © 2024 David Fonseca "DavidCreat"
+  Todos los derechos reservados.
+  El código estructural de esta página web está protegido por derechos de autor y no puede ser copiado, modificado o distribuido sin autorización.
+  https://github.com/DavidCreat
+-->
+</html>
+
+<!-- 
+██████╗░░█████╗░██╗░░░██╗██╗██████╗░  ░█████╗░██████╗░███████╗░█████╗░████████╗
+██╔══██╗██╔══██╗██║░░░██║██║██╔══██╗  ██╔══██╗██╔══██╗██╔════╝██╔══██╗╚══██╔══╝
+██║░░██║███████║╚██╗░██╔╝██║██║░░██║  ██║░░╚═╝██████╔╝█████╗░░███████║░░░██║░░░
+██║░░██║██╔══██║░╚████╔╝░██║██║░░██║  ██║░░██╗██╔══██╗██╔══╝░░██╔══██║░░░██║░░░
+██████╔╝██║░░██║░░╚██╔╝░░██║██████╔╝  ╚█████╔╝██║░░██║███████╗██║░░██║░░░██║░░░
+╚═════╝░╚═╝░░╚═╝░░░╚═╝░░░╚═╝╚═════╝░  ░╚════╝░╚═╝░░╚═╝╚══════╝╚═╝░░╚═╝░░░╚═╝░░░
+David Fonseca "DavidCreat" https://github.com/DavidCreat
+  Copyright © 2024 David Fonseca "DavidCreat"
+  Todos los derechos reservados.
+  El código estructural de esta página web está protegido por derechos de autor y no puede ser copiado, modificado o distribuido sin autorización.
+  https://github.com/DavidCreat
+-->
